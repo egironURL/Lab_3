@@ -1,0 +1,14 @@
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\AppConsola.deps.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\AppConsola.runtimeconfig.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\AppConsola.runtimeconfig.dev.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\AppConsola.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\AppConsola.pdb
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\Compresion.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\bin\Debug\netcoreapp2.1\Compresion.pdb
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.csprojAssemblyReference.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.csproj.CoreCompileInputs.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.AssemblyInfoInputs.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.AssemblyInfo.cs
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.csproj.CopyComplete
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\AppConsola\obj\Debug\netcoreapp2.1\AppConsola.pdb

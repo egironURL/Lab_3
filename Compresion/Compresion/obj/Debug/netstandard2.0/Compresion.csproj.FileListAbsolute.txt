@@ -1,0 +1,9 @@
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\obj\Debug\netstandard2.0\Compresion.csprojAssemblyReference.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\obj\Debug\netstandard2.0\Compresion.csproj.CoreCompileInputs.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\obj\Debug\netstandard2.0\Compresion.AssemblyInfoInputs.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\obj\Debug\netstandard2.0\Compresion.AssemblyInfo.cs
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\bin\Debug\netstandard2.0\Compresion.deps.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\bin\Debug\netstandard2.0\Compresion.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\bin\Debug\netstandard2.0\Compresion.pdb
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\obj\Debug\netstandard2.0\Compresion.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\Compresion\obj\Debug\netstandard2.0\Compresion.pdb
