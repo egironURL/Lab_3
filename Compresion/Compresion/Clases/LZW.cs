@@ -28,6 +28,9 @@ namespace Compresion.Clases
             this.compressFile = _compressFile;
         }
 
+        // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // COMPRESIÓN
+
         public List<byte> Comprimir()
         {
             List<byte> listaByteCompresion = new List<byte>();
@@ -102,29 +105,49 @@ namespace Compresion.Clases
 
             string caracter = string.Empty, nuevo = string.Empty;
             int NoASCII = -1, previo = 0;
-            int Cont = Diccionario.Count + 1;
 
             for (int x = 0; x < _Diccionario.Count; x++)
             {
                 Diccionario.Add(_Diccionario.ElementAt(x).Key, _Diccionario.ElementAt(x).Value);
             }
 
+            int Cont = Diccionario.Count + 1;
             for (int y = 0; y < _listaCharArchivo.Count; y++)
             {
                 NoASCII = _listaCharArchivo.ElementAt(y);
                 caracter = Convert.ToString((char)NoASCII);
-                nuevo = nuevo + caracter;
-                if (!Diccionario.ContainsKey(nuevo))
+                nuevo = nuevo + caracter;                
+                if (y != _listaCharArchivo.Count - 1)
                 {
-                    Diccionario.Add(nuevo, Cont);
-                    string anterior = nuevo.Remove(nuevo.Length - 1);
-                    nuevo = Convert.ToString(nuevo.Last());
-                    Diccionario.TryGetValue(anterior, out previo);
-                    listaCompresion.Add(previo);
-                    Cont++;
+                    if (!Diccionario.ContainsKey(nuevo))
+                    {
+                        Diccionario.Add(nuevo, Cont);
+                        string anterior = nuevo.Remove(nuevo.Length - 1);
+                        nuevo = Convert.ToString(nuevo.Last());
+                        Diccionario.TryGetValue(anterior, out previo);
+                        listaCompresion.Add(previo);
+                        Cont++;
+                    }
+                }
+                else
+                {
+                    if (!Diccionario.ContainsKey(nuevo))
+                    {
+                        Diccionario.Add(nuevo, Cont);
+                        string anterior = nuevo.Remove(nuevo.Length - 1);
+                        nuevo = Convert.ToString(nuevo.Last());
+                        Diccionario.TryGetValue(anterior, out previo);
+                        listaCompresion.Add(previo);
+                        Cont++;
+                    }
+                    else
+                    {
+                        Diccionario.TryGetValue(nuevo, out previo);
+                        listaCompresion.Add(previo);
+                    }
                 }
             }
-            listaCompresion.Add(Diccionario.Count);
+             listaCompresion.Add(Diccionario.Count);
 
             return listaCompresion;
         }
@@ -216,6 +239,222 @@ namespace Compresion.Clases
             Console.WriteLine("\nCompress Ratio: " + CompressRatio);
             Console.WriteLine("\nCompress Factor: " + CompressFactor);
             Console.WriteLine("\nReductionPer: " + ReductionPer);
+        }
+
+        // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // DESCOMPRESIÓN
+
+        public List<byte> Descomprimir()
+        {
+            List<byte> listaByteDescompresion = new List<byte>();
+
+            List<int> listaCharArchivo = LecturaArchivoCompress();
+            int bitLong = listaCharArchivo.ElementAt(0);
+            listaCharArchivo.RemoveAt(0);
+            Dictionary<int, string> Diccionario = CrearDiccionarioDescompresion(listaCharArchivo);
+            listaByteDescompresion = CrearListaByteDescompresion(Diccionario, listaCharArchivo, bitLong);
+
+            return listaByteDescompresion;
+        }
+
+        private List<int> LecturaArchivoCompress()
+        {
+            List<int> ListaASCII = new List<int>();
+
+            int letter = 0;
+            FileStream stream = compressFile.Open(FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(stream);
+            while (letter != -1)
+            {
+                try
+                {
+                    letter = reader.ReadByte();
+                }
+                catch
+                {
+                    letter = reader.Read();
+                }
+
+                if (letter != -1)
+                {
+
+                    ListaASCII.Add(letter);
+                    Console.Write((char)letter);
+                }
+            }
+            reader.Close();
+            stream.Close();
+
+            return ListaASCII;
+        }
+
+        private Dictionary<int, string> CrearDiccionarioDescompresion(List<int> _listaCharArchivo)
+        {
+            Dictionary<int, string> Diccionario = new Dictionary<int, string>();
+
+            int NoASCII = -1, Cont = 1;
+            string caracter = string.Empty;
+            int numDiccionario = _listaCharArchivo.ElementAt(0);
+            _listaCharArchivo.RemoveAt(0);
+
+            for (int x = 0; x < numDiccionario; x++)
+            {
+                NoASCII = _listaCharArchivo.ElementAt(0);
+                caracter = Convert.ToString((char)NoASCII);
+                if (!Diccionario.ContainsValue(caracter))
+                {
+                    Diccionario.Add(Cont, caracter);
+                    Cont++;
+                }
+                _listaCharArchivo.RemoveAt(0);
+            }
+            //var sortedDict = from entry in Diccionario orderby entry.Key ascending select entry;
+
+            return Diccionario;
+        }
+
+        private List<byte> CrearListaByteDescompresion(Dictionary<int, string> _Diccionario, List<int> _listaCharArchivo, int _bitLong)
+        {
+            List<byte> listaByteDescompresion = new List<byte>();
+
+            string textoBits = string.Empty;
+            string strbyte = string.Empty;
+            for (int y = 0; y < _listaCharArchivo.Count; y++)
+            {
+                strbyte = Convert.ToString(_listaCharArchivo.ElementAt(y), 2);
+                strbyte = strbyte.PadLeft(8, '0');
+                textoBits = textoBits + strbyte;
+            }
+
+            int Cont = _Diccionario.Count + 1;
+            strbyte = string.Empty;
+            string previo = string.Empty;
+            string textoOriginal = string.Empty;
+
+            while (textoBits.Length != 0)
+            {
+                strbyte = strbyte + textoBits.ElementAt(0);
+                textoBits = textoBits.Substring(1);
+                if(strbyte.Length == _bitLong)
+                {
+                    int key = Convert.ToInt32(strbyte, 2);
+
+                    if(key != 0)
+                    {
+                        if (previo == string.Empty)
+                        {
+                            _Diccionario.TryGetValue(key, out previo);
+                            strbyte = string.Empty;
+
+                            textoOriginal = textoOriginal + previo;
+                        }
+                        else
+                        {
+                            strbyte = string.Empty;
+
+                            string actual = string.Empty;
+                            _Diccionario.TryGetValue(key, out actual);
+
+                            string nuevo = previo + actual.ElementAt(0);
+                            _Diccionario.Add(Cont, nuevo);
+                            Cont++;
+                            textoOriginal = textoOriginal + actual;
+
+                            previo = actual;
+                        }
+                    }
+                }
+
+                if (textoOriginal.Length >= 500)
+                {
+                    for (int x = 0; x < textoOriginal.Length; x++)
+                    {
+                        char caracter = textoOriginal.ElementAt(x);
+                        byte byteASCII;
+                        if (caracter != '\\')
+                        {
+                            byteASCII = Convert.ToByte(caracter);
+                            listaByteDescompresion.Add(byteASCII);
+                            //Console.Write((char)byteASCII);
+                        }
+                        else
+                        {
+                            x++;
+                            if(textoOriginal.ElementAt(x) == 'r')
+                            {
+                                byteASCII = 13;
+                                listaByteDescompresion.Add(byteASCII);
+                                x++;
+                            }
+                            if (textoOriginal.ElementAt(x) == 'n')
+                            {
+                                byteASCII = 10;
+                                listaByteDescompresion.Add(byteASCII);
+                                x++;
+                            }
+                        }
+                    }
+                    textoOriginal = string.Empty;
+                }
+            }
+
+            if (textoOriginal.Length >= 0)
+            {
+                for (int x = 0; x < textoOriginal.Length; x++)
+                {
+                    char caracter = textoOriginal.ElementAt(x);
+                    byte byteASCII;
+                    if (caracter != '\\')
+                    {
+                        byteASCII = Convert.ToByte(caracter);
+                        listaByteDescompresion.Add(byteASCII);
+                        //Console.Write((char)byteASCII);
+                    }
+                    else
+                    {
+                        x++;
+                        if (textoOriginal.ElementAt(x) == 'r')
+                        {
+                            byteASCII = 13;
+                            listaByteDescompresion.Add(byteASCII);
+                            x++;
+                        }
+                        if (textoOriginal.ElementAt(x) == 'n')
+                        {
+                            byteASCII = 10;
+                            listaByteDescompresion.Add(byteASCII);
+                            x++;
+                        }
+                    }
+                }
+                textoOriginal = string.Empty;
+            }
+
+            return listaByteDescompresion;
+        }
+
+        public void CrearArchivoDesompresion()
+        {
+            
+            if (File.Exists(originalFile.FullName))
+            {
+                File.Delete(originalFile.FullName);
+            }
+
+            //File.Create(PathFileHUFF);
+            List<byte> _FileDecompress = Descomprimir();
+            FileStream stream = new FileStream(originalFile.FullName, FileMode.Create, FileAccess.Write);
+            BinaryWriter writer = new BinaryWriter(stream);
+
+            for (int x = 0; x < _FileDecompress.Count; x++)
+            {
+                writer.Write(_FileDecompress.ElementAt(x));
+            }
+
+            writer.Close();
+            stream.Close();
+
+            Console.WriteLine("\n\nARCHIVO DESCOMPRIMIDO EXITOSAMENTE");
         }
     }
 }

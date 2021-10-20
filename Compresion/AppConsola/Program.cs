@@ -17,7 +17,10 @@ namespace AppConsola
 
             LZW compresion = new LZW(fi1, fi2);
             //compresion.Comprimir();
-            compresion.CrearArchivoCompresion();
+            //compresion.CrearArchivoCompresion();
+
+            //compresion.Descomprimir();
+            compresion.CrearArchivoDesompresion();
 
             Console.ReadLine();
         }
