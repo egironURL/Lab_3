@@ -116,7 +116,8 @@ namespace Compresion.Clases
             {
                 NoASCII = _listaCharArchivo.ElementAt(y);
                 caracter = Convert.ToString((char)NoASCII);
-                nuevo = nuevo + caracter;                
+                nuevo = nuevo + caracter;  
+                
                 if (y != _listaCharArchivo.Count - 1)
                 {
                     if (!Diccionario.ContainsKey(nuevo))
@@ -138,6 +139,8 @@ namespace Compresion.Clases
                         nuevo = Convert.ToString(nuevo.Last());
                         Diccionario.TryGetValue(anterior, out previo);
                         listaCompresion.Add(previo);
+                        Diccionario.TryGetValue(nuevo, out previo);
+                        listaCompresion.Add(previo);
                         Cont++;
                     }
                     else
@@ -158,7 +161,12 @@ namespace Compresion.Clases
             string textoComprimido = string.Empty;
             string strbyte = string.Empty;
             int maxDiccionario = _listaCompresion.Last();
-            int bitLong = Convert.ToInt16(Math.Log(maxDiccionario, 2));
+            double d_bitLong = Math.Log(maxDiccionario, 2);
+            int bitLong = Convert.ToInt16(d_bitLong);
+            if (d_bitLong != Math.Floor(d_bitLong))
+            {
+                bitLong++;
+            }
             _listaCompresion.RemoveAt(_listaCompresion.Count - 1);
 
             ListaByteCompresion.Add(Convert.ToByte(bitLong));
@@ -188,9 +196,11 @@ namespace Compresion.Clases
             }
 
             strbyte = string.Empty;
-            for (int z = 0; z < textoComprimido.Length; z++)
+            while (textoComprimido.Length != 0)
             {
-                strbyte = strbyte + textoComprimido.ElementAt(z);
+                strbyte = textoComprimido.Substring(0, 8);
+                textoComprimido = textoComprimido.Substring(8);
+                //strbyte = strbyte + textoComprimido.ElementAt(z);
                 if(strbyte.Length == 8)
                 {
                     ListaByteCompresion.Add(Convert.ToByte(strbyte, 2));
@@ -331,10 +341,11 @@ namespace Compresion.Clases
             string previo = string.Empty;
             string textoOriginal = string.Empty;
 
-            while (textoBits.Length != 0)
+            while (textoBits.Length > _bitLong)
             {
-                strbyte = strbyte + textoBits.ElementAt(0);
-                textoBits = textoBits.Substring(1);
+                strbyte = textoBits.Substring(0, _bitLong);
+                //strbyte = strbyte + textoBits.ElementAt(0);
+                textoBits = textoBits.Substring(_bitLong);
                 if(strbyte.Length == _bitLong)
                 {
                     int key = Convert.ToInt32(strbyte, 2);
@@ -355,17 +366,27 @@ namespace Compresion.Clases
                             string actual = string.Empty;
                             _Diccionario.TryGetValue(key, out actual);
 
-                            string nuevo = previo + actual.ElementAt(0);
-                            _Diccionario.Add(Cont, nuevo);
-                            Cont++;
-                            textoOriginal = textoOriginal + actual;
+                            if(actual != null)
+                            {
+                                string nuevo = previo + actual.ElementAt(0);
+                                _Diccionario.Add(Cont, nuevo);
+                                Cont++;
+                                textoOriginal = textoOriginal + actual;
 
-                            previo = actual;
+                                previo = actual;
+                            }
+                            else
+                            {
+                                string nuevo = previo + previo.ElementAt(0);
+                                _Diccionario.Add(Cont, nuevo);
+                                Cont++;
+                                textoOriginal = textoOriginal + nuevo;
+                            }
                         }
                     }
                 }
 
-                if (textoOriginal.Length >= 500)
+                if (textoOriginal.Length >= 1000)
                 {
                     for (int x = 0; x < textoOriginal.Length; x++)
                     {
@@ -380,7 +401,7 @@ namespace Compresion.Clases
                         else
                         {
                             x++;
-                            if(textoOriginal.ElementAt(x) == 'r')
+                            if (textoOriginal.ElementAt(x) == 'r')
                             {
                                 byteASCII = 13;
                                 listaByteDescompresion.Add(byteASCII);
@@ -398,7 +419,7 @@ namespace Compresion.Clases
                 }
             }
 
-            if (textoOriginal.Length >= 0)
+            if (textoOriginal.Length > 0)
             {
                 for (int x = 0; x < textoOriginal.Length; x++)
                 {
