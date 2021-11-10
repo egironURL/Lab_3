@@ -1,0 +1,30 @@
+[
+  {
+    "FileName": "Cadena.txt",
+    "PathFileHUFF": "Compresion1.lzw",
+    "CompressRatio": 0.73,
+    "CompressFactor": 1.38,
+    "ReductionPer": 27
+  },
+  {
+    "FileName": "CadenaCorta.txt",
+    "PathFileHUFF": "Compresion2.lzw",
+    "CompressRatio": 0.65,
+    "CompressFactor": 1.53,
+    "ReductionPer": 35
+  },
+  {
+    "FileName": "CadenaMedia.txt",
+    "PathFileHUFF": "Compresion2.lzw",
+    "CompressRatio": 0.63,
+    "CompressFactor": 1.58,
+    "ReductionPer": 37
+  },
+  {
+    "FileName": "CadenaLarga.txt",
+    "PathFileHUFF": "Compresion4.lzw",
+    "CompressRatio": 0.5,
+    "CompressFactor": 2.0,
+    "ReductionPer": 50
+  }
+]

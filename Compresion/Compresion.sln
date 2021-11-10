@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compresion", "Compresion\Compresion.csproj", "{2F4317E3-BB9A-466F-8DF4-B95DCF1725A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compresion", "Compresion\Compresion.csproj", "{2F4317E3-BB9A-466F-8DF4-B95DCF1725A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsola", "AppConsola\AppConsola.csproj", "{8B914D9E-7062-4403-AE3E-92B77251D0B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppConsola", "AppConsola\AppConsola.csproj", "{8B914D9E-7062-4403-AE3E-92B77251D0B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIWeb", "APIWeb\APIWeb.csproj", "{BE5E3DC7-8E26-4391-8B61-FB5A36A349CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8B914D9E-7062-4403-AE3E-92B77251D0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B914D9E-7062-4403-AE3E-92B77251D0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B914D9E-7062-4403-AE3E-92B77251D0B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5E3DC7-8E26-4391-8B61-FB5A36A349CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5E3DC7-8E26-4391-8B61-FB5A36A349CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5E3DC7-8E26-4391-8B61-FB5A36A349CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5E3DC7-8E26-4391-8B61-FB5A36A349CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

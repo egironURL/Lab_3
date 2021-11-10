@@ -11,6 +11,6 @@ namespace Compresion.Interfaces
     {
         List<byte> Comprimir();
 
-        //List<byte> Descomprimir();
+        List<byte> Descomprimir();
     }
 }

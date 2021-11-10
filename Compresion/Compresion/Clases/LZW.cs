@@ -18,6 +18,10 @@ namespace Compresion.Clases
 
         private int ReductionPer { get; set; }
 
+        private string FileName { get; set; }
+
+        private string PathFileHUFF { get; set; }
+
         private FileInfo originalFile { get; set; }
 
         private FileInfo compressFile { get; set; }
@@ -26,6 +30,22 @@ namespace Compresion.Clases
         {
             this.originalFile = _originalFile;
             this.compressFile = _compressFile;
+
+            if (_originalFile != null && _compressFile == null)
+            {
+                this.FileName = _originalFile.FullName;
+                this.PathFileHUFF = this.FileName.Replace(_originalFile.Extension, ".lzw");
+            }
+            if (_originalFile == null && _compressFile != null)
+            {
+                this.PathFileHUFF = _compressFile.FullName;
+                this.FileName = this.PathFileHUFF.Replace(_compressFile.Extension, ".txt");
+            }
+            if (_originalFile == null && _compressFile == null)
+            {
+                this.FileName = _originalFile.FullName;
+                this.PathFileHUFF = _compressFile.FullName;
+            }
         }
 
         // ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -476,6 +496,20 @@ namespace Compresion.Clases
             stream.Close();
 
             Console.WriteLine("\n\nARCHIVO DESCOMPRIMIDO EXITOSAMENTE");
+        }
+
+        // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // JSON
+        public Compresion ObtenerDatosCompresion()
+        {
+            Compresion infoCompress = new Compresion();
+            infoCompress.FileName = this.FileName;
+            infoCompress.PathFileHUFF = this.PathFileHUFF;
+            infoCompress.CompressRatio = this.CompressRatio;
+            infoCompress.CompressFactor = this.CompressFactor;
+            infoCompress.ReductionPer = this.ReductionPer;
+
+            return infoCompress;
         }
     }
 }

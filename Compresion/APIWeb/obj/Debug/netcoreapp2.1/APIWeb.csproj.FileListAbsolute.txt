@@ -1,0 +1,17 @@
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\APIWeb.deps.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\APIWeb.runtimeconfig.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\APIWeb.runtimeconfig.dev.json
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\APIWeb.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\Compresion.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\Compresion.pdb
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.csprojAssemblyReference.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.csproj.CoreCompileInputs.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.RazorAssemblyInfo.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.RazorAssemblyInfo.cs
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.AssemblyInfoInputs.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.AssemblyInfo.cs
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.RazorTargetAssemblyInfo.cache
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.csproj.CopyComplete
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\bin\Debug\netcoreapp2.1\APIWeb.pdb
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.dll
+C:\Users\IT\Desktop\Laboratorios\Lab_3\Compresion\APIWeb\obj\Debug\netcoreapp2.1\APIWeb.pdb
